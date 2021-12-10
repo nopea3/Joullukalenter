@@ -20,25 +20,26 @@ def oneline(lists, section, s):
     else:
         if s == True:
             return 1
-        else:
+        elif s == False:
             return 0
 
 def allLines(list):
     datas = []
+    data = ""
     for i in range(len(list[0])):
         datas.append(oneline(list, i, True))
     for i in range(len(datas)):
-        datas[0] = str(datas[0]) + str(datas[i])
-    return datas[0]
+        data += str(datas[i])
+    return data
 
 def invertLines(lists):
-    data = []
+    datas = []
+    data = ""
     for i in range(len(lists[0])):
-        data.append(oneline(lists, i, False))
-    for i in range(len(data)):
-        data[0] = str(data[0]) + str(data[i])
-    return data[0]
-
+        datas.append(oneline(lists, i, False))
+    for i in range(len(datas)):
+        data += str(datas[i])
+    return data
 
 a = int(allLines(lists),2)
 b = int(invertLines(lists),2)
