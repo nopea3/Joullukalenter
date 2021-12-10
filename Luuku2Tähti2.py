@@ -22,7 +22,7 @@ def aimCalc(list):
     for i in range(len(list)):
         if "forward" in list[i]:
             forward.append(int(list[i][-1]))
-            pos = aim * forward[-1]
+            pos += aim * forward[-1]
         elif "up" in list[i]:
             up.append(int(list[i][-1]))
             aim = aim - up[-1]
