@@ -1,46 +1,30 @@
-file = open("Code\Inputs\Luukku3.txt", "r")
-lists=file.readlines()
+from os import path
 
-def oneline(lists, section, s):
-    data = []
-    Zdata = []
-    Odata = []
-    for i in range(len(lists)):
-        data.append(lists[i][section])
-    for i in range(len(data)):
-        if data[i] == "0":
-            Zdata.append(data[i])
+
+path = "D:\AdventOfCode\Code\Inputs\Luukku3.txt"
+res = []
+with open(path, "r") as file:
+    for line in file:
+        res.append(line.strip())
+lists = res
+
+def part1(lists):
+    gamma = ""
+    epsilon = ""
+    for e in range(len(lists[0])):
+        data = []
+        count = 0
+        for i in range(len(lists)):
+            data.append(lists[i][e])
+        for i in range(len(data)):
+            if data[i] == '1':
+                count += 1
+        if count > len(data) / 2:
+            gamma += "1"
+            epsilon += "0"
         else:
-            Odata.append(data[i])
-    if len(Zdata) > len(Odata):
-        if s == True:
-            return 0
-        elif s == False:
-            return 1
-    else:
-        if s == True:
-            return 1
-        elif s == False:
-            return 0
+            epsilon += "1"
+            gamma += "0"
+    return int(gamma, 2) * int(epsilon, 2)
 
-def allLines(list):
-    datas = []
-    data = ""
-    for i in range(len(list[0])):
-        datas.append(oneline(list, i, True))
-    for i in range(len(datas)):
-        data += str(datas[i])
-    return data
-
-def invertLines(lists):
-    datas = []
-    data = ""
-    for i in range(len(lists[0])):
-        datas.append(oneline(lists, i, False))
-    for i in range(len(datas)):
-        data += str(datas[i])
-    return data
-
-a = int(allLines(lists),2)
-b = int(invertLines(lists),2)
-print(a * b)
+print(part1(lists))
